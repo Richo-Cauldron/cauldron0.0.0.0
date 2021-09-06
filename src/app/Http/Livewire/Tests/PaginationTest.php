@@ -39,18 +39,14 @@ class PaginationTest extends Component
     public $page_prev;
     public $page_next; 
     public $page_last;
+    public $paginateViewParameters;
 
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 // Component methods
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-    public function previousPage()
-    {
-        dump("dfbfsgnfgn");
-    }
-
     /**
-     * The page to display 
-     * Usually is received in a url parameter
+     * Get the page to display. Usually is 
+     * received in a url parameter.
      *
      * @return void
      */
@@ -61,7 +57,7 @@ class PaginationTest extends Component
     }
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
     /**
-     *Set the number of records to display per page
+     *Set the number of records to display per page.
      *
      * @return void
      */
@@ -104,7 +100,7 @@ class PaginationTest extends Component
     }
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
     /**
-     *Page to display can not be less than 1
+     *Page to display can not be less than 1.
      *
      * @return void
      */
@@ -117,7 +113,7 @@ class PaginationTest extends Component
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
     /**
      * Calculate the position of the first record 
-     * of the page to display
+     * of the page to display.
      *
      * @return void
      */
@@ -128,7 +124,7 @@ class PaginationTest extends Component
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
     /**
      * Get the subset of records to be displayed 
-     * from the array
+     * from the array.
      *
      * @return void
      */
@@ -138,7 +134,7 @@ class PaginationTest extends Component
     }
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
     /**
-     * variables for pagination links
+     * variables for pagination links.
      *
      * @return void
      */
@@ -151,7 +147,12 @@ class PaginationTest extends Component
         // dump($this->page_first);
     }
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-
+    /**
+     * Group pagination methods and call from 
+     * one method callPaginationMethods.
+     *
+     * @return void
+     */
     public function callPaginationMethods()
     {
         $this->getPageToDisplay();
@@ -163,17 +164,19 @@ class PaginationTest extends Component
         $this->setPositionOfFirstRecord();
         $this->getSubsetOfRecordsToDisplay();
         $this->paginationLinks();
+        $this->callPaginationViewParameters();
     }
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-
-
-
-public function render()
+    /**
+     * Group view parameters in an array and call 
+     * from one method callPaginationMethods 
+     * from view render().
+     *      
+     * * @return void
+     */
+    public function callPaginationViewParameters(): void
     {
-        $this->callPaginationMethods();
-        
-
-        return view('livewire.tests.pagination-test', [
+        $this->paginateViewParameters = [
             'results' => $this->results,
             'page' => $this->page,
             'total_records' => $this->total_records,
@@ -183,49 +186,16 @@ public function render()
             'page_prev' => $this->page_prev,
             'page_next' => $this->page_next,
             'page_last' => $this->page_last,
-        ]);
+        ];
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-
-// public function render()
-// {
-//     $this->cardSearchAPIurl(); 
-
-//     $this->checkForCardSearchValueErrorException();
-
-//     $this->showInputMessage();
-
-//     // $this->cardSearchPagination();
-
-//      return view('livewire.card-search.card-search-general', [
-//         'cardSearchResults' => $this->cardSearchResults,
-//         'responseMessage' => $this->responseMessage,
-//         'totalCardsReturned' => $this->totalCardsReturned,
-//         'undefined' => $this->undefined,   
-//     ]);
-// }
+    public function render()
+        {
+            $this->callPaginationMethods();
+            
+            return view('livewire.tests.pagination-test', $this->paginateViewParameters);
+        }
+    }
 
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-// public function hydrate()
-// {
-//     $this->cardSearchResults = [];
-    
-//     $this->checkSearchInputEmpty();
-    
-// }
