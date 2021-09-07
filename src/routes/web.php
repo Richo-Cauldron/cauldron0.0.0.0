@@ -3,28 +3,32 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\Cauldron\HomeController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Cauldron\CardSearchController;
 
 
 
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-// Cauldron home page
+// Cauldron pages
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
-Route::view('/', 'cauldron')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/card/search', [CardSearchController::class, 'index'])->name('brew_init');
+
+// Route::get('/card/search/{cardId}', [CardSearchController::class, 'show'])->name('brew_specific');
 
 // Default TALL-template home page
 // Route::view('/', 'welcome')->name('home');
 
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-// Cauldron pages in progress
+// Card Search pages in test and progress
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
-Route::view('/', 'welcome')->name('home');
+// Route::get('/card', [CardController::class, 'index']);
 
-Route::get('/card', [CardController::class, 'index']);
-
-Route::get('/card/{card}', [CardController::class, 'show']);
+// Route::get('/card/{card}', [CardController::class, 'show']);
 
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 // Testing pages  - functioning
@@ -32,12 +36,13 @@ Route::get('/card/{card}', [CardController::class, 'show']);
 
 Route::get('/paginate-test', [TestController::class, 'index']);
 
+Route::get('/home-to-search-test', [TestController::class, 'homeToSearch']);
+
+Route::get('/h-t-s-brew/{searchTerm}', [TestController::class, 'brew_test'])->name('brew-test');
+
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 // Testing pages in progress
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
-Route::get('/home-to-search-test', [TestController::class, 'homeToSearch']);
-
-Route::get('/h-t-s-brew/{searchTerm}', [TestController::class, 'brew_test'])->name('brew-test');
 
 
