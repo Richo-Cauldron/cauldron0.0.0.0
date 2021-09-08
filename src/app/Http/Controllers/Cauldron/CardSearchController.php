@@ -11,4 +11,9 @@ class CardSearchController extends Controller
     {
         return view('cauldron.cardSearch.index');
     }
+
+    public function show($cardId)
+    {
+        return view('cauldron.cardSearch.show', compact('cardId'));
+    }
 }

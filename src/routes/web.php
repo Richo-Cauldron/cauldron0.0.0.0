@@ -15,9 +15,9 @@ use App\Http\Controllers\Cauldron\CardSearchController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/card/search', [CardSearchController::class, 'index'])->name('brew_init');
+Route::get('/card/search', [CardSearchController::class, 'index'])->name('brew_search');
 
-// Route::get('/card/search/{cardId}', [CardSearchController::class, 'show'])->name('brew_specific');
+Route::get('/card/{cardId}', [CardSearchController::class, 'show'])->name('brew_show');
 
 // Default TALL-template home page
 // Route::view('/', 'welcome')->name('home');
@@ -44,5 +44,5 @@ Route::get('/h-t-s-brew/{searchTerm}', [TestController::class, 'brew_test'])->na
 // Testing pages in progress
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
-
+Route::view('/nestedComponentTest', 'tests.nested-components');
 

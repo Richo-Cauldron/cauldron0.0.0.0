@@ -1,47 +1,48 @@
 <?php
 
-namespace App\Http\Livewire\Cauldron\Home;
+namespace App\Http\Livewire\Cauldron\CardSearch;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Http;
 
-class CauldronHomePage extends Component
+class BrewShow extends Component
 {
 // --------------------------------------------------
 // Properties.
 // --------------------------------------------------
     /** @var string */
-    public $searchTerm;
+    public $cardId;
+
+    /** @var json array */
+    public $showCard;
+
+    /** @var string */
+    public $undefined = "None ...";
 
 // --------------------------------------------------
 // Component non-lifecycle methods.
 // --------------------------------------------------
 
     /**
-     * Method returned from wire:keydown-enter in
-     * component view. Check if input value set.
-     * Pass to redirect.
+     * search for individual card via a cardId
      *
-     * @return redirect
+     * @return void
      */
-    public function getAndSendSearchTerm()
+    public function showBrewCard(): void
     {
-        return redirect('/card/search?q='.$this->searchTerm);
+        $this->showCard = Http::get('https://api.scryfall.com/cards/' . $this->cardId)->json();
     }
 
 // --------------------------------------------------
 // Component lifecycle methods
 // --------------------------------------------------
-
-    /**
-     * Render component view with searchTerm prop.
-     *
-     * @return view
-     */
+    
     public function render()
     {
-        return view('livewire.cauldron.home.cauldron-home-page');
+        $this->showBrewCard();        
+
+        return view('livewire.cauldron.card-search.brew-show');
     }
 }
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 // End of Component.
-
