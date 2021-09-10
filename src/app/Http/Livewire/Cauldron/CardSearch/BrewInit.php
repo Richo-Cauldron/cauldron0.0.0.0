@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Cauldron\CardSearch;
 
 use Livewire\Component;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Cauldron\CardSearchController;
 
@@ -27,9 +28,35 @@ class BrewInit extends Component
     /** @var array */
     public $cardSearchResults = [];
 
+    /** @var array */
+    public $cardBrewPileList = [];
+
+    /** @var string */
+    public $cardName;
+
+// --------------------------------------------------
+// Component event listener
+// --------------------------------------------------
+
+    protected $listeners = ['cardForBrewPile'];
+
 // --------------------------------------------------
 // Component non-lifecycle methods.
 // --------------------------------------------------
+
+    public function cardForBrewPile(array $card)
+    {
+        $this->cardName = $card['name'];
+
+        $this->addToBrewPileList($this->cardName);
+        // dump($this->cardName);
+    }
+// --------------------------------------------------
+
+    public function addToBrewPileList($cardName)
+    {
+        $this->cardBrewPileList[] = $cardName;
+    }
 
     /**
      * Check string length input for 0 -> message

@@ -12,7 +12,12 @@
             </button>
         </div>
     {{-- eoSVG --}}
+
+        {{-- <livewire:cauldron.card-search.card-component /> --}}
+
     </div>
+
+
     <script>
         // page refreshed if back button used.
         const [entry] = performance.getEntriesByType("navigation");

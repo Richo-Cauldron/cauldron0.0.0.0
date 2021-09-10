@@ -13,26 +13,42 @@
         </div>
     {{-- eoSVG --}}
     </div>
-
-    <div class="ml-10 bg-gray-300">
+    {{-- sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 --}}
+    <div class="grid grid-cols-1 gap-8 ml-10 bg-gray-300">
                 
         <span> {{ $responseMessage }}</span>
        
        
         @foreach ( $cardSearchResults  as $item)
-            @if (isset($item['image_uris']['normal']))
+
+            <livewire:cauldron.card-search.card-component :item="$item" :wire:key="$loop->index" />
+
+        @endforeach
+            {{-- @if (isset($item['image_uris']['normal']))
                 <div class="cursor-pointer" wire:key="{{ $loop->index }}">
                     <a class="cursor-pointer" href="/card/{{ $item['id']}}">
                          <img class="w-64" src="{{$item['image_uris']['normal']}}" alt="{{$item['name']}}"> 
                     </a>
                 </div>
                 <p>{{$item['name']}}</p>
+                @if ($loop->index =1)
+                    @break
+                @endif
             @else
                 {{$undefined}}
 
             @endif
 
-        @endforeach
-
+        @endforeach --}}
+        
+            <div>
+                <span>Brew Pile</span>
+                @foreach ($cardBrewPileList as $name)
+                    <p>{{ $name}}</p>
+                @endforeach
+            </div>
+            
+        
    </div>
+   
 </div>
