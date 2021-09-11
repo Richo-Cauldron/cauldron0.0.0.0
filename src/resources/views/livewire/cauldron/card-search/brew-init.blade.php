@@ -21,7 +21,7 @@
        
         @foreach ( $cardSearchResults  as $item)
 
-            <livewire:cauldron.card-search.card-component :item="$item" :wire:key="$loop->index" />
+            <livewire:cauldron.card-search.b-i-card-holder :item="$item" :wire:key="$loop->index" />
 
         @endforeach
             {{-- @if (isset($item['image_uris']['normal']))
@@ -42,10 +42,13 @@
         @endforeach --}}
         
             <div>
+                @if ($cardBrewPileList)
                 <span>Brew Pile</span>
+                @endif
                 @foreach ($cardBrewPileList as $name)
                     <p>{{ $name}}</p>
                 @endforeach
+                
             </div>
             
         

@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Cauldron\CardSearch;
 
 use Livewire\Component;
 
-class CardComponent extends Component
+class BICardHolder extends Component
 {
     public $item = [];
     // public $cardList = [];
@@ -22,8 +22,9 @@ class CardComponent extends Component
 
         // dump($this->item);
     }
+
     public function render()
     {
-        return view('livewire.cauldron.card-search.card-component');
+        return view('livewire.cauldron.card-search.b-i-card-holder');
     }
 }
