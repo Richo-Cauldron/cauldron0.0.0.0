@@ -19,11 +19,17 @@
         <span> {{ $responseMessage }}</span>
        
        
-        @foreach ( $cardSearchResults  as $item)
+        @foreach ( $cardSearchResults  as $card)
+
+            <x-cauldron.card-search.card-holder :card="$card" />
+
+        @endforeach
+
+        {{-- @foreach ( $cardSearchResults  as $item)
 
             <livewire:cauldron.card-search.b-i-card-holder :item="$item" :wire:key="$loop->index" />
 
-        @endforeach
+        @endforeach --}}
             {{-- @if (isset($item['image_uris']['normal']))
                 <div class="cursor-pointer" wire:key="{{ $loop->index }}">
                     <a class="cursor-pointer" href="/card/{{ $item['id']}}">
