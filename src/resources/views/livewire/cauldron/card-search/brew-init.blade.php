@@ -41,16 +41,14 @@
 
         @endforeach --}}
         
-            <div>
-                @if ($cardBrewPileList)
-                <span>Brew Pile</span>
-                @endif
-                @foreach ($cardBrewPileList as $name)
-                    <p>{{ $name}}</p>
-                @endforeach
-                
-            </div>
             
+             <div>
+                <livewire:cauldron.card-search.brew-pile-list />
+             </div>
+
+             <div>
+                <livewire:cauldron.core.card />
+             </div>
         
    </div>
    

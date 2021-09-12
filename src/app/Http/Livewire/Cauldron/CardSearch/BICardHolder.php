@@ -13,6 +13,8 @@ class BICardHolder extends Component
     {
         $this->emit('cardForBrewPile', $this->item);
 
+        $this->emit('addCardToDatabase', $this->item);
+
         // dump($this->cardList);
     }
 
