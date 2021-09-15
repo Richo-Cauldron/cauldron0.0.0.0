@@ -7,6 +7,8 @@ use Illuminate\View\Component;
 class CardHolderImage extends Component
 {
     public $card;
+
+    public $undefined = "Sorry ... there is no image for this card";
     /**
      * Create a new component instance.
      *

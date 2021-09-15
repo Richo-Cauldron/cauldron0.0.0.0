@@ -9,35 +9,77 @@ class Card extends Component
 {
     public $card = [];
 
+    public $dbCard;
+
+    public $dbCardId;
+
     public $card_sf_name;
 
     public $card_sf_id;
 
     public $card_sf_img_url;
 
-    protected $listeners = ['addCardToDatabase'];
+    public $checkDBRecord;
+
+    public $responseErrorMessage;
+
+    protected $listeners = ['addCardToDB'];
+        
 
     protected $rules = [
         'card_sf_name' => 'required|min:3',
         'card_sf_id' => 'required',
     ];
 
-    public function addCardToDatabase($card)
+    public function addCardToDB($card)
     {
-        $this->card = $card;
+        $this->checkToSeeIfCardAlreadyExistsOnCardTable($card);
+    }
 
+    public function checkToSeeIfCardAlreadyExistsOnCardTable($card)
+    {
+        if (CardModel::where('card_sf_name', '=', $card['name'])->exists()) {
+            $this->responseErrorMessage = "Sorry ... " . $card['name'] . " already exists in your collection";
+            $this->dbCard = (CardModel::where('card_sf_name', '=', $card['name'])->get()->toJSON());
+            $this->dbCard = json_decode($this->dbCard);
+            // dd($this->dbCard[0]->id); //['items']['card']['attributes']['id']
+            $this->dbCardId = $this->dbCard[0]->id;
+            // dd($this->dbCardId);
+            $this->emit('addCardToBrewCardPT', $this->dbCardId);
+        } else {
+            $this->validateCardData($card);
+        }
+        
+    }
+
+    public function validateCardData($card)
+    {
         $this->card_sf_name = $card['name'];
         $this->card_sf_id = $card['id'];
         $this->card_sf_img_url = $card['image_uris']['normal'];
 
         $this->validate();
 
-        CardModel::create([
-            'card_sf_name' => $this->card_sf_name,
-            'card_sf_id' => $this->card_sf_id,
-            'card_sf_img_url' => $this->card_sf_img_url,
+        $this->addCardToDatabase($card);
+    }
+
+    public function addCardToDatabase($card)
+    {
+        // $this->emit('addCardToBrewCardPT', $card);
+
+        $this->dbCard = CardModel::create([
+            'card_sf_name' => $card['name'],
+            'card_sf_id' => $card['id'],
+            'card_sf_img_url' => $card['image_uris']['normal'],
         ]);
-        // dump($this->card);
+
+        $this->dbCardId = $this->dbCard->id;
+        $this->emit('addCardToBrewCardPT', $this->dbCardId);
+    }
+
+    public function hydrate()
+    {
+            $this->responseErrorMessage = '';
     }
 
     public function render()

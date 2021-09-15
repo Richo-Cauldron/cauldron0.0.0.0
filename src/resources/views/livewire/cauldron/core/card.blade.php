@@ -1,3 +1,4 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+    <h1 class="text-red-600">LW Card Component</h1>
+    {{ $responseErrorMessage }}
 </div>

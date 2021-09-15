@@ -16,7 +16,7 @@ class CardHolderNav extends Component
     public function addToBrew()
     {
         $this->emit('cardForBrewPile', $this->card);
-        $this->emit('addCardToDatabase', $this->card);
+        $this->emit('addCardToDB', $this->card);
     }
     public function render()
     {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCardsTable extends Migration
+class CreateBrewpileCard extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
-            $table->id();
-            $table->string('card_sf_id');
-            $table->string('card_sf_name');
-            $table->string('card_sf_img_url')->nullable();
-            // $table->timestamps();
+        Schema::create('brewpile_card', function (Blueprint $table) {
+            $table->unsignedInteger('brewpile_id');
+            $table->unsignedInteger('card_id');
         });
     }
 
@@ -29,6 +26,6 @@ class CreateCardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('brewpile_card');
     }
 }

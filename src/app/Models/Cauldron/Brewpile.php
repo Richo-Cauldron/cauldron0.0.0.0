@@ -5,7 +5,7 @@ namespace App\Models\Cauldron;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Card extends Model
+class Brewpile extends Model
 {
     use HasFactory;
 
@@ -13,8 +13,8 @@ class Card extends Model
 
     public $timestamps = false;
 
-    public function brewpiles()
+    public function cards()
     {
-        return $this->belongsToMany(Brewpile::class);
+        return $this->belongsToMany(Card::class);
     }
 }

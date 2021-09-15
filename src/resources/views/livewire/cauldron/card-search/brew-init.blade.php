@@ -1,61 +1,114 @@
 <div>
-    <div class="flex items-center mx-6 mt-8 bg-white rounded-full shadow-xl">
+    {{-- ------------------------------------------------------- --}}
+    {{-- BrewInit intellection --}}
+    {{-- ------------------------------------------------------- --}}
+    
+    <div id="intellection">
+        {{-- intellection --}}
+        <h1 class="text-red-600"><span class="text-black">Page Component: </span>
+            app/Http/Livewire/Cauldron/CardSearch/BrewInit Component</h1>
+        <h1 class="text-blue-600"><span class="text-black">Component Include: </span>
+            views/Cauldron/includes/_cardSearchInput.b.p</h1>  
 
-        <input wire:model.defer="searchTerm" wire:keydown.enter="resendPage" class="w-full px-6 py-4 leading-tight text-gray-700 border-0 rounded-full focus:outline-0 focus:border-current" id="search" type="text" placeholder="Search" value="{{ $searchTerm }}">
+        {{-- intellection --}}
+        <p>Nested components: </p>
 
-    {{-- Mag-Glass-SVG --}}
-        <div class="p-4">
-            <button class="flex items-center justify-center w-12 h-12 p-2 text-white bg-blue-500 rounded-full hover:bg-blue-400 focus:outline-none">
-                <svg class="flex" width="24" height="24">
-                    <path fill="white" stroke-width="0" id="svg_1" d="m15.5,14l-0.79,0l-0.28,-0.27c0.98,-1.14 1.57,-2.62 1.57,-4.23c0,-3.59 -2.91,-6.5 -6.5,-6.5s-6.5,2.91 -6.5,6.5s2.91,6.5 6.5,6.5c1.61,0 3.09,-0.59 4.23,-1.57l0.27,0.28l0,0.79l5,4.99l1.49,-1.49l-4.99,-5zm-6,0c-2.49,0 -4.5,-2.01 -4.5,-4.5s2.01,-4.5 4.5,-4.5s4.5,2.01 4.5,4.5s-2.01,4.5 -4.5,4.5z"/>
-                </svg>
-            </button>
+        {{-- intellection --}}
+        <li class="text-red-600">LW - Cauldron/Core/Card Component</li>
+        <li class="ml-8 text-purple-600">
+            emits 'addCardToBrewCardPT'-><span class="text-red-600">'BrewPileSelection'</span> component
+            </span>from <span class="text-red-800">public function addCardToDB($card)
+                </span> in <span class="text-red-600">Card</span> component.
+        </li>
+
+        {{-- intellection --}}
+        <li class="text-red-600">LW - Cauldron/CardSearch/BrewPileSelection Component</li>
+            
+        {{-- intellection --}}
+        <li class="text-gray-600">
+            <span>Blade cauldron/card-holder Component foreach()   
+            </span>
+        </li>
+
+        {{-- intellection --}}
+        <div class="ml-8">
+            <li class="text-red-600">
+                LW - Cauldron/CardSearch/CardHolderImage Component.
+            </li>
+            <li class="text-red-600">
+                LW - Cauldron/CardSearch/CardHolderNav Component.
+            </li>
         </div>
-    {{-- eoSVG --}}
+
+        {{-- intellection --}}
+        <div class="ml-12">
+            <li class="text-purple-600">
+                emits event 'cardForBrewPile'-> <span class="text-red-600">'BrewPileList'</span>
+                from <span class="text-red-800">addToBrew()</span> in <span class="text-red-600">CardHolderNav</span> component.
+            </li>
+            <li class="text-purple-600">
+                emits 'addCardToDB'->  <span class="text-red-600">'Card' </span>from <span class="text-red-800">addToBrew()</span> in <span class="text-red-600">CardHolderNav</span> component.
+            </li>
+        </div>
+
+        {{-- intellection --}}
+        <li class="text-red-600">
+            LW - Cauldron/CardSearch/BrewPileList Component.
+        </li>
+    
     </div>
+
+    {{-- ------------------------------------------------------- --}}
+    {{-- brew-init-component-page --}}
+    {{-- ------------------------------------------------------- --}}
+
+    {{-- Card search input --}}
+    
+    @include('cauldron.includes._cardSearchInput', ['keydownMethod' => 'resendPage'])
+
     {{-- sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 --}}
     <div class="grid grid-cols-1 gap-8 ml-10 bg-gray-300">
+
+        {{-- $responseMessage from BrewInit component--}}
                 
         <span> {{ $responseMessage }}</span>
+
+        {{--core.Card LW component - Listens for addCardToDatabase event sent from 
+            x-card-holder.lw-card-holder-nav wire:click="addToBrew"
+            emits event addCardToBrewCardPT to BrewPileSelection component--}}
+
+        <div>
+            <livewire:cauldron.core.card />
+        </div>
+
+        {{--Brewpile->name selection of DB records --}}
+
+        <livewire:cauldron.card-search.brew-pile-selection />
        
+
        
+        {{-- intellection --}}
+        <p class="text-gray-600">
+            <span>Blade cauldron/card-holder Component foreach()   
+            </span>
+        </p>
+
+         {{-- iterate over cardSearchResults using blade component card-holder
+             to house multiple components to hold and action a card --}}
         @foreach ( $cardSearchResults  as $card)
 
-            <x-cauldron.card-search.card-holder :card="$card" />
+            <x-cauldron.card-search.card-holder :card="$card" :wire:key="$loop->index" />
 
         @endforeach
 
-        {{-- @foreach ( $cardSearchResults  as $item)
 
-            <livewire:cauldron.card-search.b-i-card-holder :item="$item" :wire:key="$loop->index" />
+    {{--Brew Pile pst LW component - Listens for cardForBrewPile event 
+    sent from card-holder-nav wire:click="addToBrew"--}}
 
-        @endforeach --}}
-            {{-- @if (isset($item['image_uris']['normal']))
-                <div class="cursor-pointer" wire:key="{{ $loop->index }}">
-                    <a class="cursor-pointer" href="/card/{{ $item['id']}}">
-                         <img class="w-64" src="{{$item['image_uris']['normal']}}" alt="{{$item['name']}}"> 
-                    </a>
-                </div>
-                <p>{{$item['name']}}</p>
-                @if ($loop->index =1)
-                    @break
-                @endif
-            @else
-                {{$undefined}}
-
-            @endif
-
-        @endforeach --}}
-        
-            
-             <div>
-                <livewire:cauldron.card-search.brew-pile-list />
-             </div>
-
-             <div>
-                <livewire:cauldron.core.card />
-             </div>
-        
+        <div>
+            <livewire:cauldron.card-search.brew-pile-list />
+        </div>
+  
    </div>
    
 </div>
