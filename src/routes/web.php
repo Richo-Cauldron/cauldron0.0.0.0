@@ -40,10 +40,12 @@ Route::get('/home-to-search-test', [TestController::class, 'homeToSearch']);
 
 Route::get('/h-t-s-brew/{searchTerm}', [TestController::class, 'brew_test'])->name('brew-test');
 
-Route::view('/nestedComponentTest', 'tests.nested-components');
+Route::view('/nestedComponentTest', 'testViews.nested-components');
 
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 // Testing pages in progress
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+Route::view('/modal-test-page', 'testViews.modal-test-page');
 
 

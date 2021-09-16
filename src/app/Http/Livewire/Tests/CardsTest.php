@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Tests;
 
 use Livewire\Component;
 
-class Cards extends Component
+class CardsTest extends Component
 {
     public $cards = ['Conflux', 'Blistercoil', 'Bolas'];
     

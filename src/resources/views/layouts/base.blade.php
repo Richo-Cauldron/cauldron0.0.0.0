@@ -30,6 +30,9 @@
     <body>
         @yield('body')
 
+        <livewire:tests.contact-modal-test />
+        <livewire:tests.another-modal-test />
+
         @livewireScripts
     </body>
 </html>

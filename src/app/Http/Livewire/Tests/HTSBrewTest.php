@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Tests;
 
 use Livewire\Component;
 
-class HTSBrew extends Component
+class HTSBrewTest extends Component
 {
     public $searchTerm;
     public $methodResponse;

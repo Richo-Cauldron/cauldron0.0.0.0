@@ -11,7 +11,7 @@ class PaginationTest extends Component
 {
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
-    use CardSearchGeneralTrait;
+    // use CardSearchGeneralTrait;
 
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 // Component public properties

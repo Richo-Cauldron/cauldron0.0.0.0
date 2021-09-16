@@ -2,7 +2,7 @@
     <h1 class="text-red-600">LW BrewPileSelection Component</h1>
 
     <label for="brewpile_id" id="brewpile_id">Brew Pile Selection:</label>
-    <select wire:model="brewpile_id" class="" name="pile">
+    <select wire:model="brewpile_id" class="" name="brewpile">
 
         <option selected="selected" value="">Choose Brewpile</option>
 
@@ -18,7 +18,7 @@
     
     </select>
 
-    {{ $brewpile_id }} {{ $brewpile_name}}
+    {{ $brewpile_id }} 
     <div>{{ $message }}</div>
     
 </div>

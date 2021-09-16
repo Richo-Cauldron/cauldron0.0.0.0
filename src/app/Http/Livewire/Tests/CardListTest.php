@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Tests;
 
 use Livewire\Component;
 
-class CardList extends Component
+class CardListTest extends Component
 {
     public $card;
 

@@ -14,13 +14,13 @@ class BrewPileSelection extends Component
 
     public $brewpiles = [];
 
-    public $pile;
+    // public $pile;
 
     public $message;
 
     protected $listeners = ['addCardToBrewCardPT'];
 
-    /**
+     /**
      * Create a new component instance.
      *
      * @return void
@@ -50,7 +50,9 @@ class BrewPileSelection extends Component
             // dd($this->brewpile_id);
             $bp = Brewpile::find($this->brewpile_id);
             // dd($bp);
-            if (!$bp == null) {
+            if ($bp === null) {
+                $this->message = "Please choose a Brew Pile";
+            } else {
                 $bpName = $bp['name'];
             // dd($card['card_sf_name']);
                 $card->brewpiles()->attach($this->brewpile_id);

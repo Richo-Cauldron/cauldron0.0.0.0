@@ -8,16 +8,16 @@ class TestController extends Controller
 {
     public function index()
     {
-        return view('tests.pagination-test');
+        return view('testViews.pagination-test');
     }
 
     public function homeToSearch()
     {
-        return view('tests.home-to-search');
+        return view('testViews.home-to-search');
     }
 
     public function brew_test($searchTerm)
     {
-        return view('tests.h-t-s-brew', compact('searchTerm'));
+        return view('testViews.h-t-s-brew', compact('searchTerm'));
     }
 }

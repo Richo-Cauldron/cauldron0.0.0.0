@@ -23,6 +23,7 @@
 
         {{-- intellection --}}
         <li class="text-red-600">LW - Cauldron/CardSearch/BrewPileSelection Component</li>
+        <li class="ml-8 text-purple-600">select wire:model=brewpile_id</li>
             
         {{-- intellection --}}
         <li class="text-gray-600">
