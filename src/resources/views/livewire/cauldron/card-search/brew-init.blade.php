@@ -63,7 +63,7 @@
     {{-- brew-init-component-page --}}
     {{-- ------------------------------------------------------- --}}
 
-    {{-- Card search input --}}
+    {{-- Card search <input> --}}
     
     @include('cauldron.includes._cardSearchInput', ['keydownMethod' => 'resendPage'])
 
@@ -85,8 +85,6 @@
         {{--Brewpile->name selection of DB records --}}
 
         <livewire:cauldron.card-search.brew-pile-selection />
-       
-
        
         {{-- intellection --}}
         <p class="text-gray-600">

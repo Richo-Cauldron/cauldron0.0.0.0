@@ -20,5 +20,13 @@
 
     {{ $brewpile_id }} 
     <div>{{ $message }}</div>
+
+    <div>
+        <button x-data="{}" x-on:click="window.livewire.emitTo('cauldron.modals.create-brew-pile', 'show')">
+            Create Brew Pile
+        </button>
+    </div>
+
+    <livewire:cauldron.modals.create-brew-pile />
     
 </div>

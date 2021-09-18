@@ -42,10 +42,11 @@ Route::get('/h-t-s-brew/{searchTerm}', [TestController::class, 'brew_test'])->na
 
 Route::view('/nestedComponentTest', 'testViews.nested-components');
 
+Route::view('/modal-test-page', 'testViews.modal-test-page');
+
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 // Testing pages in progress
 // +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
-Route::view('/modal-test-page', 'testViews.modal-test-page');
 
 
