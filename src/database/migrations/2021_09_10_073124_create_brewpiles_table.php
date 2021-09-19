@@ -15,8 +15,6 @@ class CreateBrewpilesTable extends Migration
     {
         Schema::create('brewpiles', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('card_id');
-            // $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
             $table->string('name');
             // $table->timestamps();
         });

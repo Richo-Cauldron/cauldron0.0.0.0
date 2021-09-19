@@ -63,6 +63,19 @@ return [
             ]) : [],
         ],
 
+        'mysql_testing' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'testdb'),
+            'port' => env('DB_PORT', '8011'),
+            'database' => env('DB_DATABASE', 'cauldron'),
+            'username' => env('DB_USERNAME', 'cauldron'),
+            'password' => env('DB_PASSWORD', 'cauldron'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

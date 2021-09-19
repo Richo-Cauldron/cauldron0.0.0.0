@@ -13,6 +13,7 @@ services:
     depends_on: 
       - php
       - mysql
+      - testdb
       - redis
     ports: 
       - 80:80
@@ -43,6 +44,17 @@ services:
       MYSQL_DATABASE: laraveldb
       MYSQL_USER: laravel
       MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    networks: 
+      - laravel
+
+  testdb:
+    image: mysql:5.7.32
+    container_name: testdb
+    environment: 
+      MYSQL_DATABASE: cauldron
+      MYSQL_USER: cauldron
+      MYSQL_PASSWORD: cauldron
       MYSQL_ROOT_PASSWORD: secret
     networks: 
       - laravel
@@ -90,6 +102,18 @@ services:
       - ./src:/var/www/html
     working_dir: /var/www/html
     entrypoint: ['php', '/var/www/html/vendor/bin/phpunit']
+    networks: 
+      - laravel
+
+  pest:
+    build: 
+      context: .
+      dockerfile: php.dockerfile
+    container_name: pest
+    volumes: 
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ['php', '/var/www/html/vendor/bin/pest']
     networks: 
       - laravel
 

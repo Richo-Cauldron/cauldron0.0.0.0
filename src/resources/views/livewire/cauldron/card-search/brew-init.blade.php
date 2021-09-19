@@ -82,7 +82,8 @@
             <livewire:cauldron.core.card />
         </div>
 
-        {{--Brewpile->name selection of DB records --}}
+        {{--Brewpile->name selection of DB records,
+            Create Brewpile button->modal--}}
 
         <livewire:cauldron.card-search.brew-pile-selection />
        

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cauldron;
 
 use Illuminate\Http\Request;
+use App\Models\Cauldron\Brewpile;
 use App\Http\Controllers\Controller;
 
 class BrewpileController extends Controller
@@ -33,9 +34,11 @@ class BrewpileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        Brewpile::create([
+            'name' => request('name')
+        ]);
     }
 
     /**
