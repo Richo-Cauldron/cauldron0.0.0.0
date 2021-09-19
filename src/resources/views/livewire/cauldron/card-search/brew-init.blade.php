@@ -63,20 +63,11 @@
     {{-- brew-init-component-page --}}
     {{-- ------------------------------------------------------- --}}
 
-    {{-- Card search <input> --}}
-    
-    @include('cauldron.includes._cardSearchInput', ['keydownMethod' => 'resendPage'])
-
     {{-- sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 --}}
     <div class="grid grid-cols-1 gap-8 ml-10 bg-gray-300">
 
-        {{-- $responseMessage from BrewInit component--}}
-                
-        <span> {{ $responseMessage }}</span>
-
-        {{--core.Card LW component - Listens for addCardToDatabase event sent from 
-            x-card-holder.lw-card-holder-nav wire:click="addToBrew"
-            emits event addCardToBrewCardPT to BrewPileSelection component--}}
+        {{--core.Card LW component - Listens for addCardToDatabase event sent from x-card-holder.lw-card-holder-nav wire:click="addToBrew"
+        emits event addCardToBrewCardPT to BrewPileSelection component--}}
 
         <div>
             <livewire:cauldron.core.card />
@@ -86,29 +77,19 @@
             Create Brewpile button->modal--}}
 
         <livewire:cauldron.card-search.brew-pile-selection />
-       
+        
         {{-- intellection --}}
         <p class="text-gray-600">
             <span>Blade cauldron/card-holder Component foreach()   
             </span>
         </p>
 
-         {{-- iterate over cardSearchResults using blade component card-holder
-             to house multiple components to hold and action a card --}}
-        @foreach ( $cardSearchResults  as $card)
+        {{-- card-search lw component searches API, validates input --}}
+        <livewire:cauldron.card-search.card-search />
 
-            <x-cauldron.card-search.card-holder :card="$card" :wire:key="$loop->index" />
-
-        @endforeach
-
-
-    {{--Brew Pile pst LW component - Listens for cardForBrewPile event 
-    sent from card-holder-nav wire:click="addToBrew"--}}
-
+        {{--Brew Pile pst LW component - Listens for cardForBrewPile event sent from card-holder-nav wire:click="addToBrew"--}}
         <div>
             <livewire:cauldron.card-search.brew-pile-list />
         </div>
-  
    </div>
-   
 </div>

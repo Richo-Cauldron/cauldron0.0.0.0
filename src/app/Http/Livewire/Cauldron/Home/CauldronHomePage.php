@@ -10,7 +10,9 @@ class CauldronHomePage extends Component
 // Properties.
 // --------------------------------------------------
     /** @var string */
-    public $searchTerm = '';
+    public $searchTerm;
+
+    // protected $listeners = ['getAndSendSearchTerm'];
 
 // --------------------------------------------------
 // Component non-lifecycle methods.
@@ -32,10 +34,10 @@ class CauldronHomePage extends Component
 // Component lifecycle methods
 // --------------------------------------------------
 
-    public function updating($searchTerm)
-    {
-        $this->searchTerm = $searchTerm;
-    }
+    // public function hydrate()
+    // {
+    //     $this->getAndSendSearchTerm($this->searchTerm);
+    // }
     /**
      * Render component view with searchTerm prop.
      *

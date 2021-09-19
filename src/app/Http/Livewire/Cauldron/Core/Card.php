@@ -42,9 +42,7 @@ class Card extends Component
             $this->responseErrorMessage = "Sorry ... " . $card['name'] . " already exists in your collection";
             $this->dbCard = (CardModel::where('card_sf_name', '=', $card['name'])->get()->toJSON());
             $this->dbCard = json_decode($this->dbCard);
-            // dd($this->dbCard[0]->id); //['items']['card']['attributes']['id']
             $this->dbCardId = $this->dbCard[0]->id;
-            // dd($this->dbCardId);
             $this->emit('addCardToBrewCardPT', $this->dbCardId);
         } else {
             $this->validateCardData($card);
@@ -65,8 +63,6 @@ class Card extends Component
 
     public function addCardToDatabase($card)
     {
-        // $this->emit('addCardToBrewCardPT', $card);
-
         $this->dbCard = CardModel::create([
             'card_sf_name' => $card['name'],
             'card_sf_id' => $card['id'],
